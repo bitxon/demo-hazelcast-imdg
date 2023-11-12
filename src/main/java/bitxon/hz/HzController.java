@@ -1,8 +1,8 @@
 package bitxon.hz;
 
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+import com.hazelcast.core.HazelcastInstance;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class HzController {
 
-    private final ConcurrentMap<String, String> cache = new ConcurrentHashMap<>();
+    public static final String MAIN_CACHE = "main-cache";
+
+    private final HazelcastInstance hazelcastInstance;
 
     @GetMapping("/cache/{key}")
     public String get(@PathVariable("key") String key) {
@@ -28,7 +30,7 @@ public class HzController {
 
 
     private ConcurrentMap<String, String> cache() {
-        return cache;
+        return hazelcastInstance.getMap(MAIN_CACHE);
     }
 
 }

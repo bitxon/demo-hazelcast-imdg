@@ -17,3 +17,4 @@ spec:
           image: bitxon/app-hz
           ports:
             - containerPort: 8080
+            - containerPort: 5701

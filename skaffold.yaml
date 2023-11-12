@@ -9,6 +9,8 @@ build:
         dockerfile: Dockerfile
 manifests:
   rawYaml:
+    - k8s/hazelcast-rbac.yaml
+    - k8s/hazelcast-service.yaml
     - k8s/app-deployment.yaml
     - k8s/app-service.yaml
 portForward:
