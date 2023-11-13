@@ -17,17 +17,3 @@ spec:
           image: bitxon/app-hz
           ports:
             - containerPort: 8080
-        - name: hazelcast
-          image: hazelcast/hazelcast:5.2.3
-          ports:
-            - containerPort: 5701
-          env:
-            - name: JAVA_OPTS
-              value: "-Dhazelcast.config=/opt/hazelcast/config_ext/hazelcast.yaml"
-          volumeMounts:
-            - mountPath: opt/hazelcast/config_ext
-              name: hazelcast-config-volume
-      volumes:
-        - name: hazelcast-config-volume
-          configMap:
-            name: hazelcast-configmap
